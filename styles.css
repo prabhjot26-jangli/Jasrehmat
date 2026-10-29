@@ -1,0 +1,1943 @@
+/* One chapter at a time. A phone-sized experience on every screen. */
+:root {
+    --wine: #280d19;
+    --deep: #1e0b13;
+    --rose: #d497a8;
+    --rose-light: #efc0ca;
+    --cream: #f6eddd;
+    --muted: #bea5ad;
+    --gold: #d7b57d;
+    --line: #efc0ca26;
+    --ink: #300917;
+    --green: #19382d;
+    --blue: #16263d;
+    --serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --sans: "Avenir Next", "Segoe UI", Arial, sans-serif
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0
+}
+
+body {
+    background: #190a11;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    display: grid;
+    place-items: center;
+    overflow: hidden
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer
+}
+
+button,
+dialog {
+    border: 0
+}
+
+button:disabled {
+    cursor: default
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -.045em;
+    line-height: 1.09
+}
+
+h1 {
+    font-size: clamp(36px, 5.9dvh, 52px)
+}
+
+h2 {
+    font-size: clamp(34px, 5.2dvh, 46px)
+}
+
+h1 em,
+h2 em,
+h3 em {
+    color: var(--rose-light);
+    font-weight: 400
+}
+
+[hidden] {
+    display: none !important
+}
+
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden
+}
+
+.icon {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0
+}
+
+.eyebrow {
+    font-size: 9px;
+    letter-spacing: .18em;
+    line-height: 1.8;
+    color: var(--muted)
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+.button {
+    min-height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    padding: 12px 20px;
+    font-size: 12px;
+    border-radius: 3px;
+    transition: background .2s, transform .2s
+}
+
+.button:active {
+    transform: scale(.98)
+}
+
+.button-cream {
+    background: var(--cream);
+    color: var(--ink)
+}
+
+.button-cream:hover {
+    background: #fff8ed
+}
+
+.button .icon {
+    width: 18px;
+    height: 18px
+}
+
+.quiet-button {
+    background: transparent;
+    min-height: 44px;
+    padding: 10px 8px;
+    color: var(--muted);
+    font-size: 11px
+}
+
+.quiet-button:hover {
+    color: var(--cream)
+}
+
+.icon-button {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border-radius: 50%;
+    position: relative
+}
+
+.icon-button:hover {
+    background: #ffffff08
+}
+
+.circle-button {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent
+}
+
+.circle-button:disabled {
+    opacity: .25
+}
+
+.previous .icon {
+    transform: rotate(180deg)
+}
+
+/* The frame stays inside the viewport; only the active chapter can scroll. */
+.birthday-app {
+    width: min(100vw, 520px);
+    height: 100vh;
+    height: 100dvh;
+    max-height: 940px;
+    display: grid;
+    grid-template-rows: auto 2px minmax(0, 1fr) auto;
+    background: var(--wine);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition: background .3s
+}
+
+.birthday-app:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23ffffff' opacity='.09' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+    opacity: .26
+}
+
+.birthday-app[data-tone=green] {
+    background: var(--green);
+    --muted: #c0ccbc;
+    --rose-light: #d1d8bb;
+    --line: #d1d8bb30
+}
+
+.birthday-app[data-tone=blue] {
+    background: var(--blue);
+    --muted: #b1bbcd;
+    --rose-light: #d5c5d9;
+    --line: #d5c5d930
+}
+
+.app-header {
+    height: 66px;
+    padding: 10px 21px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: max(10px, env(safe-area-inset-top))
+}
+
+.wordmark {
+    font-family: var(--serif);
+    font-size: 23px;
+    letter-spacing: -.04em;
+    background: transparent;
+    padding: 5px 0;
+    min-height: 44px;
+    white-space: nowrap
+}
+
+.wordmark i {
+    color: var(--rose-light)
+}
+
+.wordmark>span {
+    font-size: 10px;
+    margin-left: 8px;
+    color: var(--gold)
+}
+
+.header-actions {
+    display: flex;
+    gap: 2px;
+    align-items: center
+}
+
+.header-actions .icon {
+    width: 18px;
+    height: 18px
+}
+
+.sound-button[aria-pressed=true] {
+    color: var(--gold);
+    background: #ffffff08
+}
+
+.sound-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    border-radius: 50%;
+    opacity: 0
+}
+
+.sound-button[aria-pressed=true] .sound-dot {
+    opacity: 1
+}
+
+.chapter-progress {
+    height: 2px;
+    background: #efc0ca07
+}
+
+.chapter-progress>span {
+    height: 2px;
+    background: var(--rose-light);
+    width: 0;
+    display: block;
+    transition: width .3s
+}
+
+.stage {
+    min-height: 0;
+    overflow: hidden;
+    position: relative
+}
+
+.screen {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #b9889a44 transparent;
+    outline: none
+}
+
+.scene-content {
+    min-height: 100%;
+    padding: 25px 27px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative
+}
+
+.scene-content>h1,
+.scene-content>h2 {
+    outline: none
+}
+
+.scene-enter {
+    animation: scene-enter .35s both
+}
+
+@keyframes scene-enter {
+    from {
+        opacity: 0;
+        transform: translateY(9px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.chapter-navigation {
+    padding: 12px 22px max(14px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #10060b14;
+    min-height: 82px
+}
+
+.nav-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
+    min-width: 83px;
+    min-height: 48px;
+    padding: 9px 0;
+    background: transparent;
+    font-size: 12px
+}
+
+.nav-back .icon {
+    width: 18px;
+    height: 18px;
+    transform: rotate(180deg)
+}
+
+.chapter-count {
+    font-size: 10px;
+    letter-spacing: .14em;
+    color: var(--muted);
+    white-space: nowrap
+}
+
+.nav-next {
+    min-width: 103px;
+    gap: 15px;
+    min-height: 48px;
+    font-size: 12px
+}
+
+/* The envelope keeps the original wax-seal theme, with less surrounding copy. */
+.invitation-content {
+    overflow: hidden
+}
+
+.invitation-content h1 {
+    margin-top: 16px;
+    font-size: clamp(36px, 5.9dvh, 51px)
+}
+
+.envelope {
+    width: clamp(180px, 29dvh, 240px);
+    aspect-ratio: 1.53;
+    position: relative;
+    display: block;
+    margin: clamp(28px, 5dvh, 44px) auto 29px;
+    background: transparent;
+    transform: rotate(-5deg);
+    perspective: 1000px;
+    isolation: isolate;
+    transition: transform .3s
+}
+
+.envelope:hover {
+    transform: rotate(-2deg) translateY(-4px)
+}
+
+.envelope-shadow {
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    bottom: -15px;
+    height: 24px;
+    filter: blur(15px);
+    background: #0007;
+    border-radius: 50%;
+    z-index: -1
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #c995a5;
+    border-radius: 4px
+}
+
+.envelope-card {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: -15%;
+    height: 88%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 17px;
+    background: #f2e4d0;
+    transform: rotate(3deg);
+    color: var(--ink);
+    box-shadow: 0 -4px 15px #0001;
+    transition: transform .4s
+}
+
+.envelope-card>span {
+    font-size: 8px;
+    letter-spacing: .18em
+}
+
+.envelope-card i {
+    font-family: var(--serif);
+    font-size: 20px;
+    margin-top: 13px
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: #d9a6b4;
+    clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 3px
+}
+
+.envelope-front:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #e3b6c0;
+    clip-path: polygon(0 100%, 50% 45%, 100% 100%)
+}
+
+.envelope-flap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 58%;
+    background: #e9bbc7;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform .5s;
+    z-index: 2
+}
+
+.wax-seal {
+    position: absolute;
+    top: 41%;
+    left: calc(50% - 23px);
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 49% 45% 47% 44%;
+    background: #782b45;
+    color: #e5abbb;
+    box-shadow: 0 2px 5px #5b183f55, inset 0 0 0 3px #9c455a88, inset 0 0 0 5px #66253d55;
+    z-index: 3;
+    transition: opacity .2s
+}
+
+.wax-seal svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: .8
+}
+
+.envelope-to {
+    position: absolute;
+    bottom: 11px;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: #5e293c
+}
+
+.signature-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 15px
+}
+
+.invitation-rose {
+    position: absolute;
+    width: 125px;
+    height: 175px;
+    right: -47px;
+    bottom: 24%;
+    color: var(--rose);
+    opacity: .25;
+    transform: rotate(18deg);
+    pointer-events: none
+}
+
+.unwrapping .envelope-flap {
+    transform: rotateX(180deg)
+}
+
+.unwrapping .wax-seal {
+    opacity: 0
+}
+
+.unwrapping .envelope-card {
+    transform: translateY(-30px) rotate(3deg)
+}
+
+/* A portrait and one line. */
+.birthday-content>.eyebrow {
+    margin-bottom: 15px
+}
+
+.birthday-content h1 {
+    font-size: clamp(36px, 5.6dvh, 49px)
+}
+
+.birthday-portrait {
+    position: relative;
+    margin-top: 26px;
+    margin-bottom: 23px
+}
+
+.polaroid {
+    padding: 9px 9px 0;
+    background: var(--cream);
+    transform: rotate(4deg);
+    box-shadow: 0 10px 35px #0003
+}
+
+.polaroid>img {
+    width: min(64vw, 270px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.polaroid>span {
+    display: block;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 10px 0 13px;
+    text-align: center
+}
+
+.portrait-spark {
+    position: absolute;
+    right: -24px;
+    top: 6px;
+    font-size: 40px;
+    color: var(--gold)
+}
+
+.birthday-line {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted)
+}
+
+/* One image, one caption. Swipe or use the arrows. */
+.portraits-content h2 {
+    margin-bottom: 22px
+}
+
+.portrait-button {
+    display: block;
+    padding: 0;
+    background: transparent;
+    max-width: 100%
+}
+
+.portrait-frame {
+    display: block;
+    padding: 8px;
+    background: #e7d7c8;
+    transition: background .2s
+}
+
+.portrait-frame[data-colour=green] {
+    background: #8c9f8a
+}
+
+.portrait-frame[data-colour=blue] {
+    background: #8193a6
+}
+
+.portrait-frame>img {
+    width: min(76vw, 330px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.portrait-caption {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.35;
+    margin-top: 16px;
+    max-width: 320px;
+    min-height: 26px
+}
+
+.gallery-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
+    max-width: 236px;
+    margin: 17px auto 0
+}
+
+.small-count {
+    font-size: 10px;
+    letter-spacing: .14em;
+    color: var(--muted)
+}
+
+.shades-button {
+    margin-top: 4px;
+    padding-top: 9px;
+    font-size: 10px
+}
+
+/* A short story, with the full sentiment kept in the letter. */
+.small-rose {
+    width: 67px;
+    height: 91px;
+    color: var(--rose-light);
+    opacity: .75;
+    transform: rotate(12deg);
+    margin-bottom: 20px
+}
+
+.story-lines {
+    text-align: left;
+    max-width: 340px;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--muted)
+}
+
+.story-lines>p {
+    display: flex;
+    gap: 15px;
+    line-height: 1.8;
+    align-items: baseline;
+    margin-bottom: 19px
+}
+
+.story-lines>p>span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--rose-light);
+    min-width: 20px
+}
+
+.hand-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: #e5d5b9;
+    line-height: 1.45;
+    margin-top: 18px
+}
+
+/* One star reason at a time, no duplicate rewards. */
+.star-total {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 14px
+}
+
+.star-total>svg {
+    width: 34px;
+    height: 34px;
+    fill: var(--gold);
+    stroke: none
+}
+
+#star-count {
+    font-family: var(--serif);
+    font-size: clamp(64px, 10dvh, 86px);
+    line-height: 1.25;
+    letter-spacing: -.05em
+}
+
+.star-rule {
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--gold);
+    margin-top: 4px
+}
+
+.star-review {
+    width: 100%;
+    max-width: 330px;
+    border-block: 1px solid var(--line);
+    padding: 19px 12px 21px;
+    margin-top: 25px
+}
+
+.star-review>.eyebrow {
+    font-size: 8px;
+    letter-spacing: .14em
+}
+
+.star-review>p {
+    font-family: var(--serif);
+    font-size: 23px;
+    line-height: 1.35;
+    margin-top: 9px;
+    min-height: 32px
+}
+
+.stars-content>.button {
+    margin-top: 23px;
+    max-width: 100%;
+    font-size: 11px;
+    gap: 17px
+}
+
+.star-icon {
+    fill: currentColor;
+    stroke: none
+}
+
+.star-response {
+    font-size: 12px;
+    line-height: 1.75;
+    color: var(--rose-light);
+    min-height: 42px;
+    margin-top: 17px;
+    max-width: 325px
+}
+
+.stars-content>.quiet-button {
+    margin-top: 4px
+}
+
+.star-pop {
+    animation: star-pop .3s
+}
+
+@keyframes star-pop {
+    50% {
+        transform: scale(1.12);
+        color: var(--gold)
+    }
+}
+
+/* Covers open into a single readable document, inside the same chapter. */
+.notice-cover h2,
+.letter-cover h2 {
+    margin-bottom: 38px
+}
+
+.notice-card {
+    position: relative;
+    width: 100%;
+    max-width: 345px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 30px 27px 20px;
+    transform: rotate(-2deg);
+    box-shadow: 4px 5px 0 #c08d9b24
+}
+
+.notice-card>.eyebrow {
+    font-size: 8px;
+    color: #8a5c6c
+}
+
+.notice-subject {
+    font-family: var(--serif);
+    font-size: 33px;
+    line-height: 1.12;
+    letter-spacing: -.04em;
+    margin-top: 25px
+}
+
+.notice-subject i {
+    color: #91465c
+}
+
+.approved-stamp {
+    font-size: 9px;
+    letter-spacing: .12em;
+    border: 1px solid #5b745faa;
+    padding: 5px 7px;
+    color: #5b745f;
+    transform: rotate(10deg);
+    position: absolute;
+    top: 26px;
+    right: 20px
+}
+
+.paper-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    font-size: 11px;
+    border-top: 1px solid #b88e9a66;
+    margin-top: 37px;
+    padding-top: 15px;
+    min-height: 44px
+}
+
+.paper-action>span {
+    font-size: 16px
+}
+
+.letter-envelope {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 345px;
+    background: #ead9c6;
+    color: var(--ink);
+    text-align: left;
+    position: relative;
+    padding: 28px 26px 20px;
+    box-shadow: 4px 5px 0 #c08d9b24;
+    transform: rotate(2deg)
+}
+
+.letter-envelope:before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid #9b667f30;
+    pointer-events: none
+}
+
+.letter-envelope>.eyebrow {
+    font-size: 8px;
+    color: #8a5c6c
+}
+
+.letter-envelope-name {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 38px;
+    line-height: 1.4;
+    letter-spacing: -.05em;
+    margin-top: 7px
+}
+
+.letter-envelope-from {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: #8a5c6c;
+    margin-top: 3px
+}
+
+.letter-seal {
+    position: absolute;
+    right: 22px;
+    top: 23px;
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    background: #7c3148;
+    color: #e2b0be;
+    border: 3px double #ac6376;
+    border-radius: 50% 46% 48% 43%;
+    transform: rotate(-8deg)
+}
+
+.letter-seal>svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1
+}
+
+.paper-reader {
+    margin: 17px;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 15px 24px 30px;
+    border-radius: 2px;
+    min-height: calc(100% - 34px)
+}
+
+.reader-back {
+    background: transparent;
+    color: #825464;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    min-height: 44px;
+    font-size: 11px;
+    margin-bottom: 22px
+}
+
+.reader-back .icon {
+    width: 17px;
+    height: 17px;
+    transform: rotate(180deg)
+}
+
+.paper-reader>.eyebrow {
+    font-size: 8px;
+    color: #8a5c6c
+}
+
+.paper-reader h3 {
+    font-size: 35px;
+    line-height: 1.15;
+    margin: 22px 0 26px;
+    outline: none
+}
+
+.paper-reader h3 em {
+    color: #91465c
+}
+
+.paper-reader p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 1.95;
+    color: #67404c;
+    margin-top: 20px
+}
+
+.paper-reader ol {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #67404c;
+    padding-left: 19px;
+    margin-block: 20px
+}
+
+.paper-reader li {
+    margin-block: 9px
+}
+
+.paper-reader .paper-signoff {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px !important;
+    margin-top: 28px !important;
+    line-height: 1.6 !important
+}
+
+.paper-signoff>span {
+    font-size: 33px;
+    color: #8b3e56
+}
+
+.paper-stamp {
+    display: block;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid #a7b19b;
+    color: #526c52;
+    font-size: 8px;
+    letter-spacing: .1em;
+    text-align: center
+}
+
+.birthday-verse {
+    white-space: pre-line;
+    border-left: 2px solid #b57b8e;
+    padding: 3px 0 3px 15px;
+    margin: 28px 0;
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.8;
+    color: #8b3e56
+}
+
+.paper-reader .letter-ending {
+    font-family: var(--serif);
+    font-size: 26px !important;
+    color: var(--ink) !important;
+    line-height: 1.5 !important;
+    margin-top: 30px !important
+}
+
+.letter-ending em {
+    color: #91465d
+}
+
+.paper-reader .postscript {
+    font-size: 12px !important;
+    font-style: italic;
+    border-top: 1px solid #cdb3b4;
+    padding-top: 20px;
+    margin-top: 28px !important
+}
+
+/* Four clean Spotify links. */
+.spotify-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #93bc98;
+    font-size: 8px;
+    letter-spacing: .17em;
+    margin-bottom: 18px
+}
+
+.spotify-label .icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none
+}
+
+.playlist-content h2 {
+    margin-bottom: 30px
+}
+
+.song-list {
+    width: 100%;
+    max-width: 350px;
+    border-top: 1px solid var(--line)
+}
+
+.song-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--line);
+    min-height: 75px
+}
+
+.song-row:hover {
+    background: #ffffff04
+}
+
+.song-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    letter-spacing: -.025em;
+    line-height: 1.3;
+    text-align: left;
+    display: block
+}
+
+.song-note {
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-top: 3px;
+    text-align: left
+}
+
+.song-row>.icon {
+    width: 19px;
+    height: 19px;
+    color: var(--rose-light);
+    transform: rotate(-45deg)
+}
+
+/* The same birthday cake, in a chapter of its own. */
+.wish-description {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 17px
+}
+
+.wish-content>.button {
+    font-size: 11px;
+    gap: 17px
+}
+
+.wish-result {
+    font-family: var(--serif);
+    font-size: 29px;
+    line-height: 1.25;
+    margin-top: 5px
+}
+
+.wish-result em {
+    color: var(--rose-light)
+}
+
+.wish-content>.quiet-button {
+    margin-top: 10px
+}
+
+.cake-scene {
+    position: relative;
+    width: 270px;
+    height: 245px;
+    margin: 35px auto 27px
+}
+
+.cake {
+    width: 220px;
+    height: 117px;
+    position: absolute;
+    bottom: 31px;
+    left: 25px;
+    border-radius: 6px 6px 12px 12px;
+    background: #c18093;
+    box-shadow: inset -18px 0 0 #bc748a, 0 12px 25px #0002
+}
+
+.cake-top {
+    height: 38px;
+    width: 220px;
+    border-radius: 50%;
+    background: #f0d9ce;
+    position: absolute;
+    left: 0;
+    top: -17px;
+    z-index: 3;
+    border-bottom: 3px solid #e2bdb8
+}
+
+.cake-drips {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1px;
+    z-index: 3
+}
+
+.cake-drips>i {
+    width: 26px;
+    height: 40px;
+    background: #f0d9ce;
+    border-radius: 0 0 20px 20px
+}
+
+.cake-drips>i:nth-child(even) {
+    height: 26px
+}
+
+.cake-drips>i:first-child,
+.cake-drips>i:last-child {
+    width: 18px;
+    height: 28px
+}
+
+.cake-writing {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    color: #502638;
+    z-index: 4
+}
+
+.cake-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 14px;
+    bottom: 0;
+    background: radial-gradient(circle at 7px 7px, #f1d5c8 6px, transparent 6.5px) repeat-x;
+    background-size: 14px 14px;
+    z-index: 2
+}
+
+.cake-plate {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    height: 21px;
+    bottom: 22px;
+    border-radius: 50%;
+    background: #abb6c4;
+    box-shadow: 0 4px 0 #7f8e9f
+}
+
+.cake-candles {
+    position: absolute;
+    left: 65px;
+    right: 65px;
+    bottom: 155px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    z-index: 5
+}
+
+.candle {
+    padding: 0 12px;
+    height: 85px;
+    width: 44px;
+    position: relative;
+    background: transparent;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    isolation: isolate
+}
+
+.candle-body {
+    width: 10px;
+    height: 50px;
+    display: block;
+    background: repeating-linear-gradient(-35deg, #f1dfc8 0 7px, #789684 7px 13px);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 2px 2px 0 #0001
+}
+
+.candle:nth-child(2) {
+    transform: translateY(-5px)
+}
+
+.candle:nth-child(2) .candle-body {
+    height: 60px;
+    background: repeating-linear-gradient(-35deg, #f1dfc8 0 7px, #b26780 7px 13px)
+}
+
+.wick {
+    width: 2px;
+    height: 5px;
+    background: #543d3a
+}
+
+.flame {
+    width: 13px;
+    height: 22px;
+    background: #f3cc7e;
+    border-radius: 65% 35% 55% 45% / 70% 55% 45% 30%;
+    box-shadow: 0 0 12px #efb859aa, 0 0 35px #efb85944;
+    display: block;
+    margin-bottom: 1px;
+    transform-origin: center bottom;
+    animation: flicker 1.4s ease-in-out infinite alternate
+}
+
+.candle:nth-child(2) .flame {
+    animation-delay: -.5s
+}
+
+.candle:nth-child(3) .flame {
+    animation-delay: -.9s
+}
+
+.candle.blown .flame {
+    opacity: 0;
+    animation: none;
+    transform: translateY(-10px) scale(.2);
+    transition: opacity .3s, transform .3s
+}
+
+.candle.blown .wick:before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 17px;
+    bottom: 60px;
+    border-radius: 50%;
+    background: #c2c7cb55;
+    filter: blur(2px)
+}
+
+@keyframes flicker {
+    from {
+        transform: rotate(-5deg) scale(.92)
+    }
+
+    to {
+        transform: rotate(6deg) scale(1.05)
+    }
+}
+
+.cake-spark {
+    position: absolute;
+    color: var(--gold)
+}
+
+.spark-left {
+    top: 62px;
+    left: -4px;
+    font-size: 23px;
+    transform: rotate(-12deg)
+}
+
+.spark-right {
+    right: -10px;
+    top: 15px;
+    font-size: 39px
+}
+
+.cake-scene {
+    flex-shrink: 0;
+    height: 225px;
+    margin: 25px auto 25px
+}
+
+.cake-spark {
+    position: absolute;
+    color: var(--gold)
+}
+
+.spark-left {
+    top: 62px;
+    left: -4px;
+    font-size: 23px;
+    transform: rotate(-12deg)
+}
+
+.spark-right {
+    right: -10px;
+    top: 15px;
+    font-size: 39px
+}
+
+/* Menus and photos use native focus-trapped dialogs. */
+dialog {
+    background: var(--wine);
+    color: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 36px);
+    padding: 25px;
+    overscroll-behavior: contain;
+    scrollbar-width: thin
+}
+
+dialog::backdrop {
+    background: #12080de3;
+    backdrop-filter: blur(7px)
+}
+
+dialog[open] {
+    animation: scene-enter .2s
+}
+
+.dialog-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 3;
+    background: #280d19e8
+}
+
+.dialog-top h2 {
+    font-size: 33px;
+    padding-right: 18px
+}
+
+.menu-dialog {
+    width: 390px
+}
+
+.dialog-top {
+    position: relative;
+    margin-bottom: 24px
+}
+
+.dialog-top .dialog-close {
+    right: -14px;
+    top: -15px
+}
+
+.menu-dialog nav {
+    display: grid;
+    border-top: 1px solid var(--line)
+}
+
+.menu-dialog nav>button {
+    min-height: 49px;
+    display: flex;
+    gap: 18px;
+    text-align: left;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    padding: 10px 3px;
+    font-size: 13px
+}
+
+.menu-dialog nav>button>span:first-child {
+    font-size: 9px;
+    letter-spacing: .12em;
+    color: var(--muted)
+}
+
+.menu-dialog nav>button[aria-current=page] {
+    color: var(--rose-light)
+}
+
+.menu-dialog nav>button[aria-current=page]:after {
+    content: "✦";
+    color: var(--gold);
+    font-size: 11px;
+    margin-left: auto
+}
+
+.shades-dialog {
+    width: 360px;
+    text-align: center;
+    padding: 45px 24px 30px
+}
+
+.shades-dialog h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin-top: 20px
+}
+
+.shades-dialog .button {
+    margin-top: 26px;
+    font-size: 11px
+}
+
+.shades-dialog .eyebrow {
+    font-size: 8px
+}
+
+.photo-dialog {
+    width: 440px;
+    padding: 14px
+}
+
+.photo-dialog>img {
+    max-height: 65dvh;
+    width: 100%;
+    object-fit: contain;
+    background: var(--deep);
+    aspect-ratio: 3/4
+}
+
+.photo-dialog>p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+    margin-top: 16px
+}
+
+.photo-dialog .gallery-controls {
+    max-width: 100%;
+    margin-top: 17px
+}
+
+.toast {
+    position: fixed;
+    z-index: 150;
+    left: 50%;
+    bottom: max(98px, calc(env(safe-area-inset-bottom) + 84px));
+    width: max-content;
+    max-width: min(calc(100vw - 34px), 440px);
+    transform: translate(-50%, 12px);
+    background: var(--cream);
+    color: var(--ink);
+    padding: 13px 17px;
+    border: 1px solid #d7b57d66;
+    border-radius: 3px;
+    box-shadow: 0 7px 25px #0003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.7
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0)
+}
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 140
+}
+
+.noscript-message {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 17px;
+    font-size: 14px;
+    z-index: 200
+}
+
+@media(min-width:600px) {
+    .birthday-app {
+        height: calc(100dvh - 36px);
+        border: 1px solid #efc0ca1f;
+        border-radius: 12px;
+        box-shadow: 0 20px 90px #0004
+    }
+
+    .app-header {
+        padding-inline: 25px
+    }
+}
+
+@media(max-width:360px) {
+    .app-header {
+        padding-inline: 18px;
+        height: 62px
+    }
+
+    .wordmark {
+        font-size: 22px
+    }
+
+    .scene-content {
+        padding-inline: 21px
+    }
+
+    .chapter-navigation {
+        padding-inline: 18px;
+        gap: 10px
+    }
+
+    .nav-back {
+        min-width: 70px;
+        font-size: 11px
+    }
+
+    .nav-next {
+        min-width: 91px;
+        font-size: 11px;
+        padding-inline: 15px;
+        gap: 12px
+    }
+
+    .chapter-count {
+        font-size: 9px
+    }
+
+    .portrait-caption {
+        font-size: 17px
+    }
+
+    .letter-envelope-name {
+        font-size: 33px
+    }
+
+    .letter-envelope {
+        padding-inline: 23px
+    }
+
+    .letter-seal {
+        width: 37px;
+        height: 37px;
+        right: 18px;
+        top: 23px
+    }
+
+    .notice-subject {
+        font-size: 30px
+    }
+
+    .paper-reader {
+        margin: 12px;
+        padding-inline: 20px;
+        min-height: calc(100% - 24px)
+    }
+
+    .paper-reader h3 {
+        font-size: 31px
+    }
+
+    .paper-reader p:not(.eyebrow),
+    .paper-reader ol {
+        font-size: 14px
+    }
+
+    .birthday-verse {
+        font-size: 18px;
+        padding-left: 12px
+    }
+
+    .story-lines {
+        font-size: 13px
+    }
+
+    .hand-note {
+        font-size: 20px
+    }
+}
+
+@media(max-height:720px) {
+    .scene-content {
+        padding-block: 17px
+    }
+
+    h2 {
+        font-size: 34px
+    }
+
+    .app-header {
+        height: 60px
+    }
+
+    .chapter-navigation {
+        min-height: 74px;
+        padding-block: 10px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom))
+    }
+
+    .nav-next {
+        min-height: 46px
+    }
+
+    .invitation-content h1 {
+        font-size: 38px
+    }
+
+    .invitation-content .envelope {
+        margin-top: 35px;
+        margin-bottom: 24px
+    }
+
+    .birthday-content>.eyebrow {
+        margin-bottom: 10px
+    }
+
+    .birthday-content h1 {
+        font-size: 36px
+    }
+
+    .birthday-portrait {
+        margin-block: 20px 16px
+    }
+
+    .polaroid>img {
+        height: clamp(115px, calc(100dvh - 430px), 210px)
+    }
+
+    .polaroid>span {
+        font-size: 10px;
+        padding-block: 8px 10px
+    }
+
+    .birthday-line {
+        font-size: 13px
+    }
+
+    .portraits-content h2 {
+        margin-bottom: 14px
+    }
+
+    .portrait-frame>img {
+        height: clamp(105px, calc(100dvh - 455px), 240px)
+    }
+
+    .portrait-caption {
+        margin-top: 10px;
+        font-size: 17px;
+        min-height: 23px
+    }
+
+    .gallery-controls {
+        margin-top: 10px
+    }
+
+    .shades-button {
+        margin-top: 0;
+        font-size: 10px
+    }
+
+    .small-rose {
+        width: 43px;
+        height: 58px;
+        margin-bottom: 14px
+    }
+
+    .story-lines {
+        margin-top: 20px
+    }
+
+    .story-lines>p {
+        margin-bottom: 13px
+    }
+
+    .hand-note {
+        margin-top: 12px
+    }
+
+    .star-total {
+        margin-top: 8px
+    }
+
+    #star-count {
+        font-size: 64px
+    }
+
+    .star-review {
+        padding-block: 12px 14px;
+        margin-top: 16px
+    }
+
+    .star-review>p {
+        font-size: 21px;
+        min-height: 28px
+    }
+
+    .stars-content>.button {
+        margin-top: 16px;
+        min-height: 47px
+    }
+
+    .star-response {
+        margin-top: 12px;
+        min-height: 37px;
+        font-size: 11px
+    }
+
+    .star-rule {
+        font-size: 10px
+    }
+
+    .stars-content>.quiet-button {
+        margin-top: 0
+    }
+
+    .notice-cover h2,
+    .letter-cover h2 {
+        margin-bottom: 28px
+    }
+
+    .playlist-content h2 {
+        margin-bottom: 21px
+    }
+
+    .spotify-label {
+        margin-bottom: 12px
+    }
+
+    .song-row {
+        padding-block: 12px;
+        min-height: 64px
+    }
+
+    .song-title {
+        font-size: 24px
+    }
+
+    .song-note {
+        font-size: 10px
+    }
+
+    .wish-description {
+        margin-top: 13px;
+        font-size: 11px
+    }
+
+    .cake-scene {
+        margin-block: 14px 12px;
+        height: 205px;
+        transform: scale(.84);
+        transform-origin: 50% 70%
+    }
+
+    .wish-content>.button {
+        min-height: 47px
+    }
+
+    .wish-result {
+        font-size: 25px
+    }
+
+    .wish-content>.quiet-button {
+        margin-top: 4px
+    }
+}
+
+@media(max-height:620px) {
+
+    .stars-content h2,
+    .playlist-content h2 {
+        font-size: 30px
+    }
+
+    .stars-content #star-count {
+        font-size: 52px
+    }
+
+    .stars-content .star-review {
+        margin-top: 12px;
+        padding-block: 9px 11px
+    }
+
+    .stars-content .star-review>p {
+        font-size: 20px;
+        min-height: 26px
+    }
+
+    .stars-content>.button {
+        margin-top: 12px
+    }
+
+    .stars-content .star-response {
+        min-height: 30px;
+        margin-top: 10px
+    }
+
+    .playlist-content .spotify-label {
+        margin-bottom: 8px
+    }
+
+    .playlist-content .song-row {
+        min-height: 56px;
+        padding-block: 9px
+    }
+
+    .playlist-content .song-title {
+        font-size: 23px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *:before,
+    *:after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important
+    }
+
+    .flame {
+        animation: none
+    }
+}
